@@ -1,23 +1,87 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import Header from "./Components/Header";
+import {
+  createMuiTheme,
+  makeStyles,
+  ThemeProvider,
+} from "@material-ui/core/styles";
+import Footer from "./Components/Footer";
+import theme from "./Components/Theme";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import "./App.css";
+import LandingPage from "./Components/LandingPage"
+
 
 function App() {
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [value, setValue] = useState(0);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <ThemeProvider theme={theme}>
+        <BrowserRouter>
+          <Header
+       
+                value={value}
+  
+                     setValue={setValue}
+    
+                   setSelectedIndex={setSelectedIndex}
+       
+                setValue={setValue}
+         
+          />
+          <Switch>
+            <Route
+              exact
+              path="/"
+              component={LandingPage}
+             
+            
+            ></Route>
+            <Route
+              exact
+              path="/services"
+              component={() => <div>Services</div>}
+            ></Route>
+            <Route
+              exact
+              path="/customSoftware"
+              component={() => <div>customSoftware</div>}
+            ></Route>
+            <Route
+              exact
+              path="/mobileapps"
+              component={() => <div>mobileapps</div>}
+            ></Route>
+            <Route
+              exact
+              path="/websites"
+              component={() => <div>websites</div>}
+            ></Route>
+            <Route
+              exact
+              path="/revolution"
+              component={() => <div>theRevolution</div>}
+            ></Route>
+            <Route
+              exact
+              path="/about"
+              component={() => <div>AboutUs</div>}
+            ></Route>
+            <Route
+              exact
+              path="/contact"
+              component={() => <div>ContactUs</div>}
+            ></Route>
+            <Route
+              exact
+              path="/estimate"
+              component={() => <div>Estimate</div>}
+            ></Route>
+          </Switch>
+          <Footer value={value} selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex} setValue={setValue}/>
+        </BrowserRouter>
+      </ThemeProvider>
     </div>
   );
 }
